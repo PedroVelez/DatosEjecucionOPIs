@@ -35,6 +35,7 @@ orient landscape
 CreaFigura(gcf,strcat(mfilename,'_Plate_02'),[4 7])
 
 %Porcentaje ejecucion cap 2 y 6 (Bienes, servicios e inversiones reales)
+figure
 for iOPI=2:7
     plot(anho,100*(PagosRealizados(:,iOPI,4))./ CreditoTotal(:,iOPI,4),'o-','color',ColorO(iOPI,:),'linewidth',2);hold on
 end
@@ -75,7 +76,7 @@ xlabel('Ejercicio')
 set(gca,'Fontsize',14,'Fontname','Cambria')
 title(sprintf('Porcentaje de ejecucion respecto al presupuesto en 2013 \n en gastos corrientes en bienes y servicios e inversiones reales para los OPIS'),'Fontname','Cambria')
 orient landscape
-CreaFigura(gcf,strcat(mfilename,'_Plate_04'),[4 7])
+CreaFigura(gcf,strcat(mfilename,'_Plate_05'),[4 7])
 
 
 %% Imprime valores

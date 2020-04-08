@@ -41,7 +41,5 @@ for iOPI=1:7
         'Personal creditos totales 2018', ...
         'Location','southeast')
     legend('boxoff')
-    CreaFigura(gcf,strcat(tOPI{iOPI},'_2018'),4)
+        CreaFigura(gcf,strcat(mfilename,'_',tOPI{iOPI},'_2018'),4)
 end
-
-save('Ejecucion2018','OPI_PR','OPI_CT')
