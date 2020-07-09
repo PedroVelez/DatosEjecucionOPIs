@@ -1,16 +1,14 @@
 clear all;close all
-
 load('Ejecucion')
 
-ColorO = colormap(parula(7));
+ColorO = parula(7);
 %% Total ejecucion (Me) \n gastos corrientes en bienes y servicios e inversiones reales OPIS no CSIC
 figure
 for iOPI=2:6
-    %plot(anho(2:end)-1,PagosRealizados_PREVIO(2:end,iOPI,4)/1000,'s','color',ColorO(iOPI,:)); hold on
     plot(anho,PagosRealizados(:,iOPI,4)/1000,'-','color',ColorO(iOPI,:),'linewidth',2);hold on
 end
 set(gca,'XTick',[2013 2014 2015 2016 2017 2018 2019])
-HL=legend(tOPI(2:6,:));set(HL,'fontsize',12)
+HL=legend(tOPI(2:6,:),'Location','Northwest');set(HL,'fontsize',12)
 grid on
 ylabel('Millones euros')
 xlabel('Ejercicio')
@@ -25,7 +23,7 @@ for iOPI=7
     plot(anho,PagosRealizados(:,iOPI,4)/1000,'-','color',ColorO(iOPI,:),'linewidth',2);
 end
 set(gca,'XTick',[2013 2014 2015 2016 2017 2018 2019])
-HL=legend(tOPI(7));set(HL,'fontsize',12)
+HL=legend(tOPI(7),'Location','Northwest');set(HL,'fontsize',12)
 grid on
 ylabel('Millones euros')
 xlabel('Ejercicio')
@@ -40,7 +38,7 @@ for iOPI=2:7
     plot(anho,100*(PagosRealizados(:,iOPI,4))./ CreditoTotal(:,iOPI,4),'o-','color',ColorO(iOPI,:),'linewidth',2);hold on
 end
 set(gca,'XTick',[2013 2014 2015 2016 2017 2018 2019])
-HL=legend(tOPI(2:7));set(HL,'fontsize',12)
+HL=legend(tOPI(2:7),'Location','Northwest');set(HL,'fontsize',12)
 grid on
 ylabel('%')
 xlabel('Ejercicio')
@@ -54,7 +52,7 @@ for iOPI=2:7
     plot(anho,100*PagosRealizados(:,iOPI,4)./CreditoTotal(1,iOPI,4),'o-','color',ColorO(iOPI,:),'linewidth',2);hold on
 end
 set(gca,'XTick',[2013 2014 2015 2016 2017 2018 2019])
-HL=legend(tOPI(2:7));set(HL,'fontsize',12)
+HL=legend(tOPI(2:7),'Location','Northwest');set(HL,'fontsize',12)
 grid on
 ylabel('%')
 xlabel('Ejercicio')
@@ -69,7 +67,7 @@ for iOPI=2:7
     plot(anho,100*PagosRealizados(:,iOPI,4)./PagosRealizados(1,iOPI,4),'o-','color',ColorO(iOPI,:),'linewidth',2);hold on
 end
 set(gca,'XTick',[2013 2014 2015 2016 2017 2018 2019])
-HL=legend(tOPI(2:7));set(HL,'fontsize',12)
+HL=legend(tOPI(2:7),'Location','Northwest');set(HL,'fontsize',12)
 grid on
 ylabel('%')
 xlabel('Ejercicio')

@@ -2,14 +2,15 @@ clear all;close all
 load EjecucionIEO
 h=axes;
 
+
 hb1=bar(anho(1:7)-0.17,CreditoTotal(1:7,1:9)/1000,'stacked','barwidth',.34);
 hold on
-hb2=bar(anho(1:7)+0.165,PagosRealizados(1:7,1:9)/1000,'stacked','barwidth',.34);
+hb2=bar(anho(1:7)+0.165,Obligaciones(1:7,1:9)/1000,'stacked','barwidth',.34);
 
-hp1=plot(anho(1:7),sum(PagosRealizados(1:7,1:9)/1000,2),'linewidth',3,'color','r','Marker','o');
+hp1=plot(anho(1:7),sum(Obligaciones(1:7,1:9)/1000,2),'linewidth',3,'color','r','Marker','o');
 hp2=plot(anho(1:7),sum(CreditoTotal(1:7,1:9)/1000,2),'linewidth',3,'color','b','Marker','o');
 grid on
-axis([2012.5 2019.6 0 65])
+axis([2012.5 2019.6 0 68])
 h.XTick=[2013:1:2019];
 
 
@@ -22,7 +23,7 @@ Le{6}='Cap.6 Inversiones reales';
 Le{7}='Cap.7 Transferencias de capital';
 Le{8}='Cap.8 Activos financieros';
 Le{9}='Cap.9 Pasivos financieros';
-Le{10}='Pagos realizados';
+Le{10}='Obligaciones reconocidas';
 Le{11}='Creditos totales';
 
 Colores=[0    0.0       0.9000,
@@ -43,7 +44,7 @@ end
 
 hL=legend([hb1,hp1,hp2],Le,'NumColumns',4);
 hL.Location="southoutside";
-title('Creditos totales y pagos realizados [M€]')
+title('Creditos totales y obligaciones reconocidas [M€]')
 
 
 for anho=[2013:1:2019]
@@ -52,7 +53,7 @@ for anho=[2013:1:2019]
     ht1.Color='w';
     ht1.FontSize=16;
     
-    ht2=text(anho+0.165,2,'Pagos realizados')
+    ht2=text(anho+0.165,2,'Obligaciones reconocidas')
     ht2.Rotation=90;
     ht2.Color='w';
     ht2.FontSize=16;
@@ -65,7 +66,7 @@ for icap=1:9
 end
 
 for icap=1:9
-    fprintf('%d, %7.3f, %7.3f, %7.3f \n',icap , PagosRealizados(5,icap)/1000,PagosRealizados(6,icap)/1000,PagosRealizados(7,icap)/1000);
+    fprintf('%d, %7.3f, %7.3f, %7.3f \n',icap , Obligaciones(5,icap)/1000,Obligaciones(6,icap)/1000,Obligaciones(7,icap)/1000);
 end
 
 CreaFigura(gcf,strcat(mfilename),[7 4])

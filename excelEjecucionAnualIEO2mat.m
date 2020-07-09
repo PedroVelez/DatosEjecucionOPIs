@@ -80,13 +80,24 @@ for ianho=2:7
     for iCap=[1:1:4 6:1:9]
         CreditoTotal(ianho,iCap)=OPI{iCap}.Var2;
         
+        if strcmp(OPI{iCap}.Var3,'-') == 1
+            Obligaciones(ianho,iCap)=0;
+        else
+            Obligaciones(ianho,iCap)=OPI{iCap}.Var3;
+        end
+        
         if strcmp(OPI{iCap}.Var4,'-') == 1
             PagosRealizados(ianho,iCap)=0;
         else
             PagosRealizados(ianho,iCap)=OPI{iCap}.Var4;
         end
-        
         CreditoTotal_PREVIO(ianho,iCap)=OPI{iCap}.Var5;
+        
+        if strcmp(OPI{iCap}.Var6,'-') == 1
+            Obligaciones_PREVIO(ianho,iCap)=0;
+        else
+            Obligaciones_PREVIO(ianho,iCap)=OPI{iCap}.Var7;
+        end
         
         if strcmp(OPI{iCap}.Var7,'-') == 1
             PagosRealizados_PREVIO(ianho,iCap)=0;
@@ -97,12 +108,20 @@ for ianho=2:7
     
     CreditoTotal(ianho,5)=0;
     CreditoTotal_PREVIO(ianho,5)=0;
+
+    
+    Obligaciones(ianho,5)=0;
+    Obligaciones_PREVIO(ianho,5)=0;
+
     PagosRealizados(ianho,5)=0;
     PagosRealizados_PREVIO(ianho,5)=0;
 end
 
 
 %% Suma BS+IR en el 5.
+Obligaciones(ianho,10)=Obligaciones(ianho,2)+Obligaciones(ianho,3);
+Obligaciones_PREVIO(ianho,10)=Obligaciones_PREVIO(ianho,2)+Obligaciones_PREVIO(ianho,3);
+
 PagosRealizados(ianho,10)=PagosRealizados(ianho,2)+PagosRealizados(ianho,3);
 PagosRealizados_PREVIO(ianho,10)=PagosRealizados_PREVIO(ianho,2)+PagosRealizados_PREVIO(ianho,3);
 
@@ -111,11 +130,18 @@ CreditoTotal_PREVIO(ianho,10)=CreditoTotal_PREVIO(ianho,2)+CreditoTotal_PREVIO(i
 
 anho(1)=2013;
 for iCap=1:10
-    PagosRealizados(1,iCap)=PagosRealizados_PREVIO(2,iCap);
+        Obligaciones(1,iCap)=Obligaciones_PREVIO(2,iCap);
+        PagosRealizados(1,iCap)=PagosRealizados_PREVIO(2,iCap);
     CreditoTotal(1,iCap)=CreditoTotal(2,iCap);
 end
 
 
+figure
+plot(sum(Obligaciones(:,1:9),2))
+hold on
+plot(sum(CreditoTotal(:,1:9),2))
+
+figure
 plot(sum(PagosRealizados(:,1:9),2))
 hold on
 plot(sum(CreditoTotal(:,1:9),2))
@@ -130,4 +156,4 @@ for ianho=1:7
     anhoTotal(ic)=anho(ianho)+0.5;
 end
 
-save('EjecucionIEO','anho','PagosRealizados','CreditoTotal','PagosRealizados_PREVIO','CreditoTotal_PREVIO')
+save('EjecucionIEO','anho','PagosRealizados','CreditoTotal','PagosRealizados_PREVIO','CreditoTotal_PREVIO','Obligaciones','Obligaciones_PREVIO')
